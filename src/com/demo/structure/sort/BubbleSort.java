@@ -1,4 +1,4 @@
-package com.demo.structure.Bubble;
+package com.demo.structure.sort;
 
 /**
  * @program: Data-Structure
