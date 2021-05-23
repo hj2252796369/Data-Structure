@@ -29,12 +29,42 @@ public class QuickSort {
 
         int lessEqual = R-1;
         int index = L;
-        while (index < R) {
-            if(arr[index] <= arr[R]){
-//                swap(arr, index, R);
+        int mid = L + (int) (Math.random() * (R - L + 1));
+        swap(arr, mid, R);
+        int[] equalArea = netherlandsFlag(arr, L, R);
+
+        process(arr, L, equalArea[0]-1);
+        process(arr, equalArea[1]+1, R);
+    }
+
+    private static void swap(int[] arr, int mid, int r) {
+        int temp = arr[mid];
+        arr[mid] = arr[r];
+        arr[r] = temp;
+    }
+
+    // arr[L...R] 玩荷兰国旗问题的划分，以arr[R]做划分值
+    //  <arr[R]  ==arr[R]  > arr[R]
+    public static int[] netherlandsFlag(int[] arr, int L, int R) {
+        if (L > R) {
+            return new int[] { -1, -1 };
+        }
+        if (L == R) {
+            return new int[] { L, R };
+        }
+        int less = L - 1; // < 区 右边界
+        int more = R;     // > 区 左边界
+        int index = L;
+        while (index < more) {
+            if (arr[index] == arr[R]) {
+                index++;
+            } else if (arr[index] < arr[R]) {
+                swap(arr, index++, ++less);
+            } else { // >
+                swap(arr, index, --more);
             }
         }
-
-
+        swap(arr, more, R);
+        return new int[] { less + 1, more };
     }
 }
