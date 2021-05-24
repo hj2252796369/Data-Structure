@@ -31,14 +31,13 @@ public class HeapSort {
             heapify(heap, i, heap.length);
         }
 
-//        int heapSize = heap.length;
-//        swap(heap, 0, --heapSize);
-//        // O(N*logN)
-//        while (heapSize > 0) { // O(N)
-//            heapify(heap, 0, heapSize); // O(logN)
-//            swap(heap, 0, --heapSize); // O(1)
-//        }
-
+        int heapSize = heap.length;
+        swap(heap, 0, --heapSize);
+        // O(N*logN)
+        while (heapSize > 0) { // O(N)
+            heapify(heap, 0, heapSize); // O(logN)
+            swap(heap, 0, --heapSize); // O(1)
+        }
     }
 
     // arr[index]位置的数，能否往下移动
